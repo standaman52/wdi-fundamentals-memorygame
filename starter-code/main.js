@@ -1,79 +1,68 @@
 console.log("JS file is connected to HTML! Woo!")
-var cardOne = "queen";
-var cardTwo = "queen";
-var cardThree = "king";
-var cardFour = "king";
+
+var cards = ['queen', 'queen', 'king', 'king'];
+var cardsInPlay = [];
+
+var card = document.getElementById('game-board');
+
 
 var createCards = function(){
-var card = document.getElementById('game-board');
-var i;
-	for(i = 1; i < 4; i++)
-	{
-	var newListItem = document.createElement("div")
-	newListItem.className = 'card';
-	card.appendChild(newListItem);
 
-	
-	}
-}
+	for(i = 0; i < cards.length; i++)
+	{
+	var cardType = document.createElement('div');
+	cardType.className = 'card';
+	card.appendChild(cardType);
+	cardType.addEventListener('click', isTwoCards);
+	cardType.setAttribute('card', cards[i]);
+	// document.getElementById("game-board").innerHTML = '<img src= "queen.png" />';
+
+	};
+};
+
 
 createCards();
 
-// if (cardOne == cardTwo){
+  
 
-// 	alert("You have a match!");
-// }
-// else if (cardOne == cardThree)
-// {
 
-// 	alert("You dont have a match. Try again");
-// }
+var isMatch = function(cards){
+	if(cards[0] === cards[1])
+	{
+		alert ('You have a match')
+	}
+	else
+	{
+		alert ('You dont have a match')
+	}
 
-// else if (cardOne == cardFour)
-// {
 
-// 	alert("You dont have a match! Try again");
-// }
+}
 
-// else if (cardTwo == cardOne){
-// 	alert("You have match");
-// }
+function isTwoCards()
+{
 
-// else if (cardTwo == cardThree)
-// {
-// 	alert("You dont have a match")
 
-// }
+	cardsInPlay.push(this.getAttribute('card'));
+	if (cardsInPlay.length === 2){
+			if(cardsInPlay[0] === 'king' && cardsInPlay[1] === 'king')
+			{
+					document.getElementById("game-board").innerHTML = '<img src= "king.png" />';
+			}
+				else
+				{
+					document.getElementById("game-board").innerHTML = '<img src= "queen.png" />';
+					
 
-// else if (cardTwo == cardFour)
-// {
-// 	alert("You dont have a match")
-// }
+				}
+		isMatch(cardsInPlay);
+		cardsInPlay = [];
+	}
 
-// else if (cardThree == cardFour)
-// {
-// 		alert("You have a match!")
-// }
-// else if (cardThree == cardOne)
-// {
-// 	alert("You dont have a match! Try again");
-// }
-// else if (cardThree == cardTwo)
-// {
-// 	alert("You dont have a match! Try again");
+}
 
-// }
-// else if (cardFour == cardThree)
-// {
-// 	alert("You have a match");
 
-// }
-// else if (cardFour == cardOne)
-// {
-// 	alert("You don't have a match");
 
-// }
-// else if (cardFour == cardTwo)
-// {
-// 	alert("You don't have a match")
-// }
+
+
+
